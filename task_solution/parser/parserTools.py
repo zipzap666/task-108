@@ -1,4 +1,3 @@
-from typing import TypeVar, Type
 from google.protobuf.internal.decoder import _DecodeVarint32
 from google.protobuf.message import DecodeError
 
@@ -24,21 +23,18 @@ def parse_delimited(data, message_type):
     return message, pos + length
 
 
-T = TypeVar('T')
-
-
 class DelimitedMessagesStreamParser:
-    def __init__(self, type_msg: Type[T]):
+    def __init__(self, type_msg):
         self.type_msg = type_msg
-        self.buffer: bytearray = b''
+        self.buffer: bytes = b''
 
-    def parse(self, data) -> list[Type[T]]:
+    def parse(self, data):
         try:
             self.buffer += data
         except TypeError:
             return []
 
-        messages: list[Type[T]] = []
+        messages = []
         while len(self.buffer):
             message, bytes_consumed = parse_delimited(self.buffer, self.type_msg)
             if message:
