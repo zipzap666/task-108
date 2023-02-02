@@ -1,12 +1,8 @@
 from proto.message_pb2 import WrapperMessage
 from parser.parserTools import parse_delimited as parseDelimited
-
-from google.protobuf.internal.decoder import _DecodeVarint32
 from google.protobuf.internal.encoder import _VarintBytes
-
-import copy
-
 import unittest
+
 
 class ParseDelimitedTest(unittest.TestCase):
     def test_all_good(self):

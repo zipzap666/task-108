@@ -1,13 +1,10 @@
 from parser.parserTools import DelimitedMessagesStreamParser
 from proto.message_pb2 import WrapperMessage
-
 from google.protobuf.internal.encoder import _VarintBytes
-
 import unittest
 
 
 class DelimitedMessagesStreamParserTest(unittest.TestCase):
-
     def test_all_good(self):
         msg1, msg2, msg3, msg4 = WrapperMessage(), WrapperMessage(), WrapperMessage(), WrapperMessage()
         msg1.fast_response.current_date_time = "10"
