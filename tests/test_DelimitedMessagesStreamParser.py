@@ -1,5 +1,5 @@
-from parser.parserTools import DelimitedMessagesStreamParser
-from proto.message_pb2 import WrapperMessage
+from src.parser.parserTools import DelimitedMessagesStreamParser
+from src.proto.message_pb2 import WrapperMessage
 from google.protobuf.internal.encoder import _VarintBytes
 import unittest
 

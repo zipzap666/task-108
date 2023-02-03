@@ -2,3 +2,4 @@
 .idea
 __pycache__
 message_pb2.py
+venv

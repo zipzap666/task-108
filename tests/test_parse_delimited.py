@@ -1,5 +1,5 @@
-from proto.message_pb2 import WrapperMessage
-from parser.parserTools import parse_delimited as parseDelimited
+from src.proto.message_pb2 import WrapperMessage
+from src.parser.parserTools import parse_delimited as parseDelimited
 from google.protobuf.internal.encoder import _VarintBytes
 import unittest
 
@@ -91,4 +91,4 @@ class ParseDelimitedTest(unittest.TestCase):
 
         self.assertEqual(parseDelimited(data, WrapperMessage)[1], len(data))
         self.assertEqual(parseDelimited(data[:-2], WrapperMessage)[1], 0)
-        self.assertEqual(parseDelimited(data + b'123', WrapperMessage)[1], len(data))
+        self.assertEqual(parseDelimited(data + b'123', WrapperMessage)[1], len(data))        
