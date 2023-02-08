@@ -1,3 +1,8 @@
+## run:
+    ./run_test
+
+# Task:
+
 ## на основании постановки в LEARNING_CENTER-102 реализовать тоже самое на питоне
 ## для питона нужно будет использовать _DecodeVarint32 примерно так:
     (message_size, pos) = _DecodeVarint32(bytes_, start)
