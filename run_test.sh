@@ -1,3 +1,2 @@
-protoc --python_out=. ./src/proto/message.proto
-python3 -m unittest ./tests/test_DelimitedMessagesStreamParser.py
-python3 -m unittest ./tests/test_parse_delimited.py
+pip install .
+python3 setup.py test
