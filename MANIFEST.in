@@ -1,0 +1,4 @@
+include requirements.txt
+recursive-include src/proto *.py
+recursive-include src/parser *.py
+recursive-include tests *.py

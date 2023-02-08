@@ -17,7 +17,7 @@ def parse_delimited(data, message_type):
     message = message_type()
     try:
         message.ParseFromString(data[pos:pos + length])
-    except DecodeError:
+    except DecodeError or AttributeError:
         return None, pos + length
 
     return message, pos + length
@@ -36,7 +36,8 @@ class DelimitedMessagesStreamParser:
 
         messages = []
         while len(self.buffer):
-            message, bytes_consumed = parse_delimited(self.buffer, self.type_msg)
+            message, bytes_consumed = parse_delimited(
+                self.buffer, self.type_msg)
             if message:
                 messages.append(message)
             elif bytes_consumed == 0:

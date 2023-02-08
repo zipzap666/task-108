@@ -4,4 +4,5 @@ __pycache__
 message_pb2.py
 protobuf_parser.egg-info
 build
+.pytest_cache
 venv

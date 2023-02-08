@@ -6,7 +6,8 @@ import unittest
 
 class DelimitedMessagesStreamParserTest(unittest.TestCase):
     def test_all_good(self):
-        msg1, msg2, msg3, msg4 = WrapperMessage(), WrapperMessage(), WrapperMessage(), WrapperMessage()
+        msg1, msg2, msg3, msg4 = WrapperMessage(
+        ), WrapperMessage(), WrapperMessage(), WrapperMessage()
         msg1.fast_response.current_date_time = "10"
         msg2.slow_response.connected_client_count = 10
         msg3.request_for_fast_response.SetInParent()

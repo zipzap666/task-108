@@ -6,7 +6,8 @@ import unittest
 
 class ParseDelimitedTest(unittest.TestCase):
     def test_all_good(self):
-        msg1, msg2, msg3, msg4 = WrapperMessage(), WrapperMessage(), WrapperMessage(), WrapperMessage()
+        msg1, msg2, msg3, msg4 = WrapperMessage(
+        ), WrapperMessage(), WrapperMessage(), WrapperMessage()
         msg1.fast_response.current_date_time = "10"
         msg2.slow_response.connected_client_count = 10
         msg3.request_for_fast_response.SetInParent()
@@ -49,7 +50,8 @@ class ParseDelimitedTest(unittest.TestCase):
         self.assertEqual(test.HasField("request_for_fast_response"), False)
         self.assertEqual(test.HasField("request_for_slow_response"), True)
         self.assertEqual(bytes_consumed, len(data))
-        self.assertEqual(test.request_for_slow_response.time_in_seconds_to_sleep, 10)
+        self.assertEqual(
+            test.request_for_slow_response.time_in_seconds_to_sleep, 10)
 
     def test_empty_data(self):
         self.assertIsNone(parseDelimited(b'', WrapperMessage)[0])
@@ -65,8 +67,10 @@ class ParseDelimitedTest(unittest.TestCase):
         self.assertIsNotNone(parseDelimited(data + b'\x02', WrapperMessage)[0])
 
     def test_any_data(self):
-        self.assertIsNone(parseDelimited(b'125421587125912', WrapperMessage)[0])
-        self.assertIsNone(parseDelimited(b'sadfasdfasdfads', WrapperMessage)[0])
+        self.assertIsNone(parseDelimited(
+            b'125421587125912', WrapperMessage)[0])
+        self.assertIsNone(parseDelimited(
+            b'sadfasdfasdfads', WrapperMessage)[0])
 
     def test_corrupted_data(self):
         msg = WrapperMessage()
@@ -91,4 +95,5 @@ class ParseDelimitedTest(unittest.TestCase):
 
         self.assertEqual(parseDelimited(data, WrapperMessage)[1], len(data))
         self.assertEqual(parseDelimited(data[:-2], WrapperMessage)[1], 0)
-        self.assertEqual(parseDelimited(data + b'123', WrapperMessage)[1], len(data))        
+        self.assertEqual(parseDelimited(
+            data + b'123', WrapperMessage)[1], len(data))
