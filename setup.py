@@ -85,11 +85,13 @@ class BuildPyCmd(_build_py):
 setup(
     name='protobuf_parser',
     version='1.0.0',
+    author='R&EC SPb ETU',
+    author_email='info@nicetu.spb.ru',
+    url='http://nicetu.spb.ru'
     description='Разбор потока length-prefixed Protobuf сообщений на Python',
     zip_safe=False,
     packages=['src.proto', 'src.parser', 'tests'],
     cmdclass={
-          'clean': CleanCmd,
           'build_py': BuildPyCmd
     },
     test_suite="tests"
