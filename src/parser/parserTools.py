@@ -3,24 +3,24 @@ from google.protobuf.message import DecodeError
 
 
 def parse_delimited(data, message_type):
-    if data is None or len(data) == 0:
-        return None, 0
-
     try:
+        if data is None or len(data) == 0:
+            return None, 0
+        
         length, pos = _DecodeVarint32(data, 0)
+
+        if length + pos > len(data):
+            return None, 0
+
+        message = message_type()
+        try:
+            message.ParseFromString(data[pos:pos + length])
+        except DecodeError or AttributeError:
+            return None, pos + length
+
+        return message, pos + length
     except TypeError:
         return None, 0
-
-    if length + pos > len(data):
-        return None, 0
-
-    message = message_type()
-    try:
-        message.ParseFromString(data[pos:pos + length])
-    except DecodeError or AttributeError:
-        return None, pos + length
-
-    return message, pos + length
 
 
 class DelimitedMessagesStreamParser:

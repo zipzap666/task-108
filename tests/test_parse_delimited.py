@@ -71,6 +71,12 @@ class ParseDelimitedTest(unittest.TestCase):
             b'125421587125912', WrapperMessage)[0])
         self.assertIsNone(parseDelimited(
             b'sadfasdfasdfads', WrapperMessage)[0])
+        self.assertIsNone(parseDelimited(
+            17123, WrapperMessage)[0])
+        self.assertIsNone(parseDelimited(
+            [1,2,3,4,5], WrapperMessage)[0])
+        self.assertIsNone(parseDelimited(
+            'asdfasdfasdfasdf', WrapperMessage)[0])
 
     def test_corrupted_data(self):
         msg = WrapperMessage()
